@@ -17,9 +17,7 @@ mkdir rasa_recruiter_313
 cd rasa_recruiter_313
 python -m venv venv
 venv\Scripts\activate
-
-
-
+# Ngrok and Tiwoli
 To install and configure ngrok on Windows to expose your local Flask server, follow these steps. Ngrok creates a secure tunnel from a public internet address to a specific port on your local machine, allowing services like Twilio to send webhooks to your application. 
 Step 1: Download ngrok
 Navigate to the official ngrok download page at https://ngrok.com/download.
