@@ -19,6 +19,42 @@ python -m venv venv
 venv\Scripts\activate
 
 
+
+To install and configure ngrok on Windows to expose your local Flask server, follow these steps. Ngrok creates a secure tunnel from a public internet address to a specific port on your local machine, allowing services like Twilio to send webhooks to your application. 
+Step 1: Download ngrok
+Navigate to the official ngrok download page at https://ngrok.com/download.
+Log in or sign up for a free account. A free account is sufficient for testing.
+On the download page, select Windows and download the ZIP file. You can also install it via the Microsoft Store for automatic updates. 
+Step 2: Extract and set up the executable
+Locate the downloaded ngrok-v<version>-stable-windows-<architecture>.zip file, and extract its contents.
+Move the extracted ngrok.exe file to a dedicated folder on your system, for example, C:\ngrok. 
+Step 3: Add ngrok to your system's PATH (optional but recommended)
+Adding ngrok to your system's PATH allows you to run it from any Command Prompt window without having to navigate to its specific folder. 
+Open the Start menu and search for "environment variables."
+Click on "Edit the system environment variables".
+In the "System Properties" window, click the "Environment Variables..." button.
+Under "System variables," find and select the Path variable, then click "Edit...".
+Click "New" and add the path to your ngrok folder (e.g., C:\ngrok).
+Click "OK" on all open windows to save the changes. 
+Step 4: Connect your ngrok account
+Go to your ngrok dashboard.
+In the "Your Authtoken" section, copy the unique command containing your authentication token.
+Open a Command Prompt window (or a new one if you just changed the PATH).
+Paste the command and press Enter. This will save your auth token to the ngrok configuration file. 
+Step 5: Start the ngrok tunnel
+Make sure your Flask server is running locally on the specified port (e.g., 5000).
+In your Command Prompt, run the following command to create a public tunnel to your local server:
+sh
+ngrok http 5000
+Use code with caution.
+
+Ngrok will initialize a secure tunnel and display information, including "Forwarding" URLs. Copy the https URL, as this is the public address that Twilio will send webhooks to. 
+Step 6: Configure Twilio
+In your Twilio Console, navigate to your phone number settings.
+Set the webhook for "A Call Comes In" to the ngrok forwarding URL you copied, appending the endpoint path for your Flask app (e.g., https://your-ngrok-url.ngrok.io/voice).
+Ensure the webhook method is set to POST. 
+
+
 # Install libraries:
 sh
 pip install rasa Flask twilio textblob gTTS SpeechRecognition pydub
